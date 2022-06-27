@@ -6,7 +6,7 @@
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:48:46 by ade-beta          #+#    #+#             */
-/*   Updated: 2022/06/24 15:23:34 by ade-beta         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:39:28 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,10 @@ char	**get_path(char **env)
 
 int	main(int argc, char **argv, char **env)
 {
-	char	**path;
-
 	(void)argc;
 	(void)argv;
-	path = get_path(env);
-	if (!path)
-		return (0);
-	printf("%s\n", path[0]);
+	(void)env_handle(env, 0, NULL);
+	(void)env_handle(NULL, 1, NULL);
+	(void)env_handle(NULL, -1, NULL);
 	return (0);
 }
