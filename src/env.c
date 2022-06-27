@@ -6,7 +6,7 @@
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 09:57:55 by ade-beta          #+#    #+#             */
-/*   Updated: 2022/06/27 10:38:14 by ade-beta         ###   ########.fr       */
+/*   Updated: 2022/06/27 10:42:40 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,15 @@ t_env	*set_env(char **envd)
 
 t_env	*del_env(t_env *env)
 {
+	t_env	*ph;
+
 	while (env)
 	{
+		ph = env;
 		free(env->name);
 		free(env->content);
 		env = env->next;
+		free(ph);
 	}
 	return (NULL);
 }
