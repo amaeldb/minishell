@@ -71,13 +71,14 @@ void	print_env(t_env *env)
 t_env	*env_handle(char **envd, int opt, char *str)
 {
 	static t_env	*env;
+	t_env		*ret;
 
 	if (opt == 0)
 		env = set_env(envd);
 	else if (opt == 1)
 		print_env(env);
 	else if (opt == -1)
-		env = del_env(env);
+		ret = del_env(env);
 	(void)str;
-	return (env);
+	return (ret);
 }
