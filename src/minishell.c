@@ -6,33 +6,20 @@
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:48:46 by ade-beta          #+#    #+#             */
-/*   Updated: 2022/06/27 18:33:18 by ade-beta         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:48:40 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-char	**get_path(char **env)
-{
-	int		i;
-	char	**path;
-	char	*del;
-
-	i = -1;
-	while (env[++i])
-		if (ft_strnstr(env[i], "PATH", 4))
-			del = ft_strdup(env[i]);
-	path = ft_split(del, ':');
-	free(del);
-	return (path);
-}
-
 int	main(int argc, char **argv, char **env)
 {
 	(void)argc;
 	(void)argv;
+	printf("%d\n", ft_strncmp("TESTY", "TEST", ft_strlen("TESTY") + 1));
 	(void)env_handle(env, 0, NULL, NULL);
-	(void)env_handle(NULL, 2, NULL, NULL);
+	(void)env_handle(NULL, 3, "TEST", "Hello World");
+	(void)env_handle(NULL, 1, NULL, NULL);
 	(void)env_handle(NULL, -1, NULL, NULL);
 	return (0);
 }

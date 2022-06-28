@@ -6,7 +6,7 @@
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:52:08 by ade-beta          #+#    #+#             */
-/*   Updated: 2022/06/27 18:26:45 by ade-beta         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:49:12 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,11 @@ t_env	*get_var(t_env *env, char *str)
 	ph = env;
 	while (ph)
 	{
-		if (!ft_strncmp(env->name, str, ft_strlen(env->name)))
+		if (!ft_strncmp(ph->name, str, ft_strlen(ph->name) + 1))
 			return (ph);
 		ph = ph->next;
 	}
 	return (NULL);
-}
-
-void	export_var(t_env *env, char *str)
-{
-	t_env	*ph;
-
-	ph = env;
-	while (ph)
-	{
-		if (!ft_strncmp(env->name, str, ft_strlen(env->name)))
-			printf("declare -x %s=\"%s\"\n", ph->name, ph->content);
-		ph = ph->next;
-	}
 }
 
 t_env	*unset_var(t_env *env, char *str)
@@ -50,7 +37,7 @@ t_env	*unset_var(t_env *env, char *str)
 	prev = NULL;
 	while (ph)
 	{
-		if (!ft_strncmp(env->name, str, ft_strlen(env->name)))
+		if (!ft_strncmp(ph->name, str, ft_strlen(ph->name) + 1))
 		{
 			free(ph->name);
 			free(ph->content);
@@ -67,14 +54,20 @@ t_env	*unset_var(t_env *env, char *str)
 	return (env);
 }
 
-void	set_var(t_env *env, char *str, char *cont)
+void	export_var(t_env *env, char *str, char *cont)
 {
 	t_env	*ph;
 	t_env	*new;
 
-	ph  = env;
-	while (ph->next)
+	ph = env;
+	while (ph->next && ft_strncmp(ph->name, str, ft_strlen(str) + 1))
 		ph = ph->next;
+	if (!ft_strncmp(ph->name, str, ft_strlen(str) + 1))
+	{
+		free(ph->content);
+		ph->content = ft_strdup(cont);
+		return ;
+	}
 	new = malloc(sizeof(t_env));
 	new->name = ft_strdup(str);
 	new->content = ft_strdup(cont);

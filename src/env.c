@@ -6,7 +6,7 @@
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 09:57:55 by ade-beta          #+#    #+#             */
-/*   Updated: 2022/06/27 18:28:21 by ade-beta         ###   ########.fr       */
+/*   Updated: 2022/06/28 11:43:57 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_env	*set_env(char **envd)
 			ret = env;
 		j = -1;
 		while (envd[i][++j] && envd[i][j] != '=')
-			continue;
+			continue ;
 		envd[i][j++] = '\0';
 		env->name = ft_strdup(envd[i]);
 		env->content = ft_strdup(&envd[i][j]);
@@ -91,12 +91,10 @@ t_env	*env_handle(char **envd, int opt, char *str, char *cont)
 	else if (opt == 2)
 		export_env(env);
 	else if (opt == 3)
-		export_var(env, str);
+		export_var(env, str, cont);
 	else if (opt == 4)
-		set_var(env, str, cont);
-	else if (opt == 5)
 		env = unset_var(env, str);
-	else if (opt == 6)
+	else if (opt == 5)
 		return (get_var(env, str));
 	else if (opt == -1)
 		env = del_env(env);
