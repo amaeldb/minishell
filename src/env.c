@@ -6,7 +6,7 @@
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 09:57:55 by ade-beta          #+#    #+#             */
-/*   Updated: 2022/06/28 11:43:57 by ade-beta         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:20:59 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	export_env(t_env *env)
 	}
 }
 
-t_env	*env_handle(char **envd, int opt, char *str, char *cont)
+char	*env_handle(char **envd, int opt, char *str, char *cont)
 {
 	static t_env	*env;
 
@@ -98,5 +98,5 @@ t_env	*env_handle(char **envd, int opt, char *str, char *cont)
 		return (get_var(env, str));
 	else if (opt == -1)
 		env = del_env(env);
-	return (env);
+	return (NULL);
 }

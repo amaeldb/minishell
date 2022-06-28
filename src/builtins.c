@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   builtins.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/24 12:48:46 by ade-beta          #+#    #+#             */
-/*   Updated: 2022/06/28 14:23:06 by ade-beta         ###   ########.fr       */
+/*   Created: 2022/06/28 14:06:34 by ade-beta          #+#    #+#             */
+/*   Updated: 2022/06/28 14:19:47 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int argc, char **argv, char **env)
+int	ft_echo(int flag, char *str, int fd)
 {
-	(void)argc;
-	(void)argv;
-	(void)env_handle(env, 0, NULL, NULL);
-	printf("%s\n", env_handle(NULL, 5, "TEST", NULL));
-	(void)env_handle(NULL, -1, NULL, NULL);
+	write(fd, str, ft_strlen(str));
+	if (flag)
+		write(fd, "\n", 1);
 	return (0);
+}
+
+int	ft_cd(char *str)
+{
+	char	*path;
+	
+
+	path = ft_strdup()
 }

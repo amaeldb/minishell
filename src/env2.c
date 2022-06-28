@@ -6,21 +6,22 @@
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 17:52:08 by ade-beta          #+#    #+#             */
-/*   Updated: 2022/06/28 11:49:12 by ade-beta         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:27:20 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_env	*get_var(t_env *env, char *str)
+char	*get_var(t_env *env, char *str)
 {
 	t_env	*ph;
 
 	ph = env;
+	printf("test\n");
 	while (ph)
 	{
 		if (!ft_strncmp(ph->name, str, ft_strlen(ph->name) + 1))
-			return (ph);
+			return (ph->content);
 		ph = ph->next;
 	}
 	return (NULL);
