@@ -1,4 +1,4 @@
-SRCS =	src/minishell.c src/env.c
+SRCS =	src/minishell.c src/env.c src/env2.c
 
 OBJS =	${SRCS:.c=.o}
 

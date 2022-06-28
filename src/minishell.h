@@ -6,7 +6,7 @@
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/24 12:32:34 by ade-beta          #+#    #+#             */
-/*   Updated: 2022/06/27 10:33:27 by ade-beta         ###   ########.fr       */
+/*   Updated: 2022/06/27 18:29:22 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,10 @@ typedef struct s_env
 # include <readline/readline.h>
 # include <readline/history.h>
 
-t_env	*env_handle(char **envd, int opt, char *str);
+t_env	*env_handle(char **envd, int opt, char *str, char *cont);
+void	export_var(t_env *env, char *str);
+t_env	*get_var(t_env *env, char *str);
+t_env	*unset_var(t_env *env, char *str);
+void	set_var(t_env *env, char *str, char *cont);
 
 #endif

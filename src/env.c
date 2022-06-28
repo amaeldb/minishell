@@ -6,7 +6,7 @@
 /*   By: ade-beta <ade-beta@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 09:57:55 by ade-beta          #+#    #+#             */
-/*   Updated: 2022/06/27 10:42:40 by ade-beta         ###   ########.fr       */
+/*   Updated: 2022/06/27 18:28:21 by ade-beta         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,18 +68,37 @@ void	print_env(t_env *env)
 	}
 }
 
-t_env	*env_handle(char **envd, int opt, char *str)
+void	export_env(t_env *env)
+{
+	t_env	*ph;
+
+	ph = env;
+	while (ph)
+	{
+		printf("declare -x %s=\"%s\"\n", ph->name, ph->content);
+		ph = ph->next;
+	}
+}
+
+t_env	*env_handle(char **envd, int opt, char *str, char *cont)
 {
 	static t_env	*env;
-	t_env		*ret;
 
-	ret = NULL;
 	if (opt == 0)
 		env = set_env(envd);
 	else if (opt == 1)
 		print_env(env);
+	else if (opt == 2)
+		export_env(env);
+	else if (opt == 3)
+		export_var(env, str);
+	else if (opt == 4)
+		set_var(env, str, cont);
+	else if (opt == 5)
+		env = unset_var(env, str);
+	else if (opt == 6)
+		return (get_var(env, str));
 	else if (opt == -1)
 		env = del_env(env);
-	(void)str;
-	return (ret);
+	return (env);
 }
